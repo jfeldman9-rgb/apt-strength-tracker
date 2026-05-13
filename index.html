@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>APT Strength Tracker</title>
+  <meta name="description" content="A 12-week strength tracker with anterior pelvic tilt correction built into every session.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">12 weeks / 3 days / 45 minutes</p>
+      <h1>APT Strength Tracker</h1>
+      <p class="subhead">Progressive total-body training with rib-over-pelvis control baked into the plan.</p>
+    </div>
+    <nav class="actions" aria-label="App actions">
+      <button id="exportJson" type="button">JSON</button>
+      <button id="exportCsv" type="button">CSV</button>
+      <label class="file-button">
+        Import
+        <input id="importJson" type="file" accept="application/json">
+      </label>
+    </nav>
+  </header>
+
+  <main class="shell">
+    <aside class="rail">
+      <section class="panel">
+        <h2>Session</h2>
+        <label for="weekSelect">Week</label>
+        <select id="weekSelect"></select>
+        <label for="daySelect">Day</label>
+        <select id="daySelect"></select>
+        <div id="blockCard" class="block-card"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Metrics</h2>
+        <div class="field-grid">
+          <label>Weight
+            <input id="bodyWeight" type="text" inputmode="decimal">
+          </label>
+          <label>APT score
+            <input id="aptScore" type="text" inputmode="decimal">
+          </label>
+        </div>
+        <label>Note
+          <textarea id="postureNote" rows="3"></textarea>
+        </label>
+        <button id="saveBody" class="primary" type="button">Log metrics</button>
+      </section>
+
+      <section class="panel">
+        <h2>Progress</h2>
+        <div id="summaryStats" class="stats"></div>
+        <button id="resetData" class="danger" type="button">Reset data</button>
+      </section>
+    </aside>
+
+    <section class="workspace">
+      <div class="session-head">
+        <div>
+          <p id="sessionLabel" class="eyebrow"></p>
+          <h2 id="sessionTitle"></h2>
+          <p id="sessionGoal"></p>
+        </div>
+        <button id="finishSession" class="primary" type="button">Finish session</button>
+      </div>
+
+      <div id="sessionNotice" class="notice" hidden></div>
+
+      <section class="reset-strip" aria-labelledby="resetTitle">
+        <div class="section-title">
+          <h3 id="resetTitle">5-minute APT reset</h3>
+          <span>Do first</span>
+        </div>
+        <div id="warmupList" class="warmup-list"></div>
+      </section>
+
+      <div id="exerciseList" class="exercise-list"></div>
+    </section>
+  </main>
+
+  <template id="exerciseTemplate">
+    <article class="exercise-card">
+      <div class="exercise-head">
+        <div>
+          <p class="exercise-kicker"></p>
+          <h3 class="exercise-name"></h3>
+          <p class="exercise-meta"></p>
+        </div>
+        <strong class="exercise-target"></strong>
+      </div>
+      <p class="cue-box"></p>
+      <p class="suggestion"></p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Set</th>
+              <th>Load</th>
+              <th>Reps</th>
+              <th>RPE</th>
+              <th>Done</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <label>Exercise note
+        <input class="exercise-note" type="text">
+      </label>
+    </article>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
